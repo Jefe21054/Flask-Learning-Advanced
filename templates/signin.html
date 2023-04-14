@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domina la tecnología con EDteam</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <ul class="menu">
+                <figure class="logo">
+                    <img src="./static/imgs/logo-monocolor.svg" alt="">
+                </figure>
+                <li>Cursos</li>
+                <li>Carreras</li>
+                <li>Comunidad</li>
+                <li>Enseña en EDteam</li>
+                <li class="premiun">Sube a premium</li>
+            </ul>
+            <div class="auth">
+                <div class="search"><i class="fas fa-search"></i></div>
+                <div class="dark-mode"><i class="fas fa-sun"></i></div>
+
+                <div class="signin" id="signin">
+                    <a href="#">Inicia sesión</a>
+                </div>
+                <div class="signup">
+                    <a href="{{ url_for('signup') }}">Comienza gratis</a>
+                </div>
+            </div>
+        </header>
+        
+        <main class="hero">
+            <div class="hero-text">
+                <h2>Domina las carreras del futuro</h2>
+                <h3>y trabaja en cualquier lugar del mundo</h3>
+                <h2>sin salir de casa</h2>
+                <p>Miles de personas han aumentado sus ingresos, encontrando su primer empleo o creado su propia empresa estudiando en EDteam. <br>
+                    ¡Tú puedes ser el próximo!</p>
+                <p class="btn-cta">
+                    Comienza a estudiar gratis
+                </p>
+                <small>*No necesitas tarjeta de crédito</small>
+            </div>
+            <figure class="hero-image">
+                <img src="./static/imgs/students.png" width="300" height="300" alt="">
+            </figure>
+        </main>
+
+        <div id="login-container">
+            <div class="login">
+                <div class="login-header">
+                    <strong>Inicia sesión</strong>
+                    <div class="header-action">
+                        <button>
+                            <i class="fab fa-google"></i>
+                            Google
+                        </button>
+                        <button>
+                            <i class="fab fa-twitter"></i>
+                            Twitter
+                        </button>
+                        <button>
+                            <i class="fab    fa-github"></i>
+                            Github
+                        </button>
+                    </div>
+                </div>
+
+                <form method="POST" novalidate id="signin-form">
+                    {{ form.hidden_tag() }}
+                    <strong>O usa tu correo electrónico</strong>
+                    <div class="input">
+                        {{ form.email.label }}
+                        {{ form.email() }}
+                        {% for error in form.email.errors %}
+                            <small style="color: red;">{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                    <div class="input">
+                        {{ form.password.label }}
+                        {{ form.password() }}
+                        {% for error in form.password.errors %}
+                            <small style="color: red;">{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                    <button type="submit">Iniciar sesión</button>
+                    <p>¿No tienes una cuenta? <a href="#">Registrate es gratis</a></p>
+                    <p>¿Olvidaste tu contraseña?</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="./static/main.js"></script>
+</body>
+</html>

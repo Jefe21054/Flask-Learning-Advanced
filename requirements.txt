@@ -1,0 +1,5 @@
+flask
+flask-wtf
+email-validator
+python-dotenv
+flask-login

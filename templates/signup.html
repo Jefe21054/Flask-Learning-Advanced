@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro | EDteam</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="container-signup">
+        <div class="signup-form">
+            <div class="signup-header">
+                <figure class="logo">
+                    <img src="../static/imgs/logo.svg" alt="">
+                </figure>
+                <h1>Crea tu cuenta</h1>
+                <div class="signup-header">
+                    <strong>Usa una de tus redes</strong>
+                    <div class="header-action">
+                        <button>
+                            <i class="fab fa-google"></i>
+                            Google
+                        </button>
+                        <button>
+                            <i class="fab fa-twitter"></i>
+                            Twitter
+                        </button>
+                        <button>
+                            <i class="fab    fa-github"></i>
+                            Github
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <form method="POST" novalidate>
+                {{ form.hidden_tag() }}
+                <p>O usa tu correo electrónico</p>
+                <div class="input cols-2">
+                    <div>
+                        {{ form.firstname() }}
+                        {% for error in form.firstname.errors %} <br />
+                        <small style="color: red;">{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                    <div>
+                        {{ form.lastname() }}
+                        {% for error in form.firstname.errors %} <br />
+                        <small style="color: red;">{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="input">
+                    {{ form.email() }}
+                    {% for error in form.email.errors %}
+                    <small style="color: red;">{{ error }}</small>
+                    {% endfor %}
+                </div>
+                <div class="input">
+                    {{ form.password() }}
+                    {% for error in form.password.errors %}
+                    <small style="color: red;">{{ error }}</small>
+                    {% endfor %}
+                </div>
+                <button type="submit">Iniciar sesión</button>
+                <p><a href="{{ url_for('signin') }}">Inicia sesión</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

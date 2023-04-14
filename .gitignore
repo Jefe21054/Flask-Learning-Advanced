@@ -6,6 +6,7 @@ instance/*
 !instance/.gitignore
 .webassets-cache
 .env
+static/imgs/svg+xml_base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxLjI1ZW0iIGhlaWdodD0iMS4yNWVtIiB2aWV3Qm94PSIwIDAgMTg0IDE4NCIgY2xhc3M9InN2Zy1pY29uIHMtbXItMDUgYmlnIiBmaWxsPSJjdXJyZW50Q29sb3IiPjxwYXRoIGQ9Ik00MC43NzgsMTk5Ljc3MWwtNi40LDIzLjkx.svg
 
 ### Flask.Python Stack ###
 # Byte-compiled / optimized / DLL files
