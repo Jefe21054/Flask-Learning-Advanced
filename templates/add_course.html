@@ -1,0 +1,42 @@
+{% extends 'dashboard_base.html' %}
+
+{% block body_content %}
+   <div class="add_courses_content">
+        <figure class="logo">
+            <img src="{{ url_for('static', filename='imgs/logo-alt.svg') }}" alt="EDteam">
+        </figure>
+        <h1>Agregar nuevo curso</h1>
+        <form method="POST" novalidate class="add-course-form">
+            {{ form.csrf_token() }}
+            <div class="form-group">
+                {{ form.professor.label }} <br>
+                {{ form.professor}}
+                {% for error in form.professor.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.title.label }} <br>
+                {{ form.title }}
+                {% for error in form.title.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.description.label }} <br>
+                {{ form.description}}
+                {% for error in form.description.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.link.label }} <br>
+                {{ form.link }}
+                {% for error in form.link.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <button class="add-course-btn" type="submit">Crear</button>
+        </form>
+   </div> 
+{% endblock body_content %}

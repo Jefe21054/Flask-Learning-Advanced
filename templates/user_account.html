@@ -1,0 +1,23 @@
+{% extends 'dashboard_base.html' %}
+
+{% block body_content %}
+   <div class="user-account-content">
+      <figure class="logo">
+         <img src="{{ url_for('static', filename='imgs/logo-alt.svg') }}" alt="EDteam">
+      </figure>
+      <h1>Perfil de estudiante</h1>
+      <div class="username">
+         <i class="fa-solid fa-user"></i>
+         <p>{{ current_user.firstname}} {{ current_user.lastname }}</p>
+      </div>
+      <div class="email">
+         <i class="fa-solid fa-envelope"></i>
+         {{ current_user.email}}
+      </div>
+      <div class="courses">
+         <i class="fa-solid fa-brain"></i>
+         <p>Cursos tomados: -</p>
+      </div>
+      <h2>¡Sigue dominando la tecnologia!</h2>
+   </div>
+{% endblock body_content %}

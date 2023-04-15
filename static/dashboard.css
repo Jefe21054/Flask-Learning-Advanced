@@ -1,0 +1,214 @@
+:root {
+    --header-color: #212e36;
+    --bg-color: #192229;
+    --text-color: #ecf0f3;
+    --input-bg-color: #28353e;
+    --input-placeholder-color: #4a5862;
+    --button-bg-color: #0f80d2;
+    --header-font: 'Inter', sans-serif;
+    --body-font: 'Manrope', sans-serif;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+.container { 
+    border: 1px solid rgb(3, 3, 3);
+    width: 100vw;
+    height: 100vh;
+    font-family: var(--body-font);
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4em;
+    width: 100%;
+    height: 60px;
+    background-color: var(--header-color);
+    font-family: var(--header-font);
+}
+.logo {
+    margin: 0;
+}
+.menu a {
+    margin: 0 1em;
+    color: var(--text-color);
+    text-decoration: none;
+}
+.menu a i {
+    margin-left: .3em;
+    font-size: 1.3em;
+}
+.username {
+    display: flex;
+    align-items: center;
+}
+.username a {
+    margin: 0 1em;
+    color: var(--text-color);
+    text-decoration: none;
+}
+.username a i {
+    margin-right: .3em;
+    font-size: 1.3em;
+}
+.username .fa-right-from-bracket {
+    color: red;
+}
+/* CONTENT */
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100% - 60px);
+}
+/* Dashboard */
+.dashboard-content {
+    width: 50%;
+}
+.dashboard-content h1 {
+    font-size: 3em;
+}
+.dashboard-content h1 span {
+    color: #fcd683;
+}
+.dashboard-content p {
+    margin-top: 1em;
+}
+/* Add Course */
+.add_courses_content {
+    padding: 1.5em 1em;
+    width: 40%;
+    height: auto;
+    /* max-height: 100vh; */
+    text-align: center;
+    border-radius: 10px;
+    background-color: var(--header-color);
+}
+.add-course-form {
+    margin: 0 auto;
+    margin-top: 1em;
+    width: 90%;
+}
+.form-group {
+    margin: 1em 0;
+    width: 100%;
+}
+.form-group label {
+    display: inline-block;
+    width: 100%;
+    color: #a4aeb5;
+    font-size: .9em;
+    font-weight: 600;
+    text-align: start;
+}
+.form-group input, .form-group textarea {
+    margin-top: .5em;
+    width: 100%;
+    height: 33px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--input-bg-color);
+}
+.form-group .error {
+    display: inline-block;
+    color: red;
+    width: 100%;
+    text-align: start;
+}
+.add-course-btn {
+    width: 100%;
+    height: 36px;
+    color: #fff;
+    font-size: 1em;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--button-bg-color);
+    cursor: pointer;
+}
+/* User Account */
+.user-account-content {
+    padding: 1.5em 1em;
+    width: 40%;
+    height: 85%;
+    text-align: center;
+    border-radius: 10px;
+    background-color: var(--header-color); 
+}
+.user-account-content > .username, .email, .courses {
+    display: flex;
+    align-items: center;
+    margin: 2em 0;
+    padding: 1em .5em;
+    border-radius: 4px;
+    background-color: var(--input-bg-color);
+}
+.username i , .email i, .courses i {
+    font-size: 2em;
+    margin-right: .5em;
+    color: var(--button-bg-color);
+}
+.user-account-content h2 {
+    color: #fcd683;
+}
+/* Courses */
+.courses_content {
+    padding: 1.5em 1em;
+    width: 60%;
+    height: 85%;
+    text-align: center;
+    border-radius: 10px;
+    background-color: var(--header-color);  
+    box-sizing: border-box;
+}
+.courses-taken {
+    margin-top: 1em;
+    width: 100%;
+    height: 350px;
+    border-radius: 4px;
+    background-color: var(--input-bg-color);
+    overflow-y: auto;
+}
+.course {
+    margin-bottom: 2.5em;
+    padding: 1em 0.5em;
+    background-color: var(--input-placeholder-color);
+    box-sizing: border-box;
+}
+.course-property {
+    display: flex;
+    margin-bottom: 1em;
+}
+.course-property i {
+    width: 40px;
+    color: var(--button-bg-color);
+    font-size: 1.3em;
+}
+.course-property p {
+    text-align: start;
+}
+.course-property a {
+    color: #fcd683;
+}
+.actions a {
+    margin: 0 1em;
+    padding: .1em 1em;
+    text-decoration: none;
+    font-size: .8em;
+    border-radius: 4px;
+    color: #fff;
+    background-color: grey;
+}
+.actions .delete {
+    background-color: #b92b27;
+}
+.actions .update {
+    background-color: #0077b5;
+}
