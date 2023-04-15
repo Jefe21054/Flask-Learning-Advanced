@@ -9,7 +9,7 @@ app.config['SECRET_KEY'] = 'so-secret'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost:5432/edteamdb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-from models import User
+from models import User, Courses
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -29,7 +29,8 @@ def signup():
         lastname = request.form['lastname']
         email = request.form['email']
         password = request.form['password']
-        user = User(firstname=firstname, lastname=lastname, email=email, password=password)
+        user = User(firstname=firstname, lastname=lastname, email=email)
+        user.set_password(password)
         user.save()
         return redirect(url_for("signin"))
     return render_template("signup.html", form=form)
@@ -62,6 +63,12 @@ def user_account():
 def add_courses():
     form = AddCourseForm()
     if form.validate_on_submit():
+        professor = request.form['professor']
+        title = request.form['title']
+        description = request.form['description']
+        url = request.form['url']
+        course = Courses(professor=professor, title=title, description=description, url=url, user_login_id=current_user.id)
+        course.save()
         return redirect(url_for("dashboard"))
     return render_template("add_course.html", form=form)
 

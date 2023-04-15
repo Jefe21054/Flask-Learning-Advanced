@@ -11,7 +11,11 @@ class User(db.Model, UserMixin):
     lastname = db.Column(db.String(64), nullable=False)
     email = db.Column(db.String(32), nullable=False, unique=True)
     password = db.Column(db.String(128), nullable=False)
-    courses = db.relationship('Courses', backref='user', lazy=True)
+    courses = db.relationship('Courses', backref='user_login', lazy=True)
+    
+    def set_password(self, password):
+        ''' Para hashear la contraseña del usuario '''
+        self.password = generate_password_hash(password)
     
     def verify_password(self,password):
         ''' Para verificar la contraseña del usuario '''
@@ -38,5 +42,9 @@ class Courses(db.Model):
     title = db.Column(db.String(128), nullable=False)
     description = db.Column(db.Text, nullable=False)
     url = db.Column(db.String(256), nullable=False)
-    user_login_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_login_id = db.Column(db.Integer, db.ForeignKey('user_login.id'), nullable=False)
     
+    def save(self):
+        ''' Para guardar un nuevo curso '''
+        db.session.add(self)
+        db.session.commit()
