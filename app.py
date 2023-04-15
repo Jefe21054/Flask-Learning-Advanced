@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-from flask_login import LoginManager, login_user, login_required
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from models import User, db_user, get_user
 from forms import LoginForm, SignupForm
 
@@ -16,6 +16,8 @@ def index():
 
 @app.route("/signup", methods=["POST", "GET"])
 def signup():
+    if current_user.is_authenticated:
+        return redirect(url_for('dashboard'))
     form = SignupForm()
     if form.validate_on_submit() and request.method == "POST":
         firstname = request.form['firstname']
@@ -45,6 +47,12 @@ def signin():
 @login_required
 def dashboard():
     return render_template("dashboard.html")
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('signin'))
 
 # Cargar usuarios
 @login_manager.user_loader
