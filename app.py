@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from flask_sqlalchemy import SQLAlchemy
-from models import User, db_user, get_user
 from forms import LoginForm, SignupForm, AddCourseForm
 
 app = Flask(__name__)
@@ -10,6 +9,7 @@ app.config['SECRET_KEY'] = 'so-secret'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost:5432/edteamdb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+from models import User
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -29,8 +29,8 @@ def signup():
         lastname = request.form['lastname']
         email = request.form['email']
         password = request.form['password']
-        user = User(id=len(db_user) + 1,firstname=firstname, lastname=lastname, email=email, password=password)
-        db_user.append(user)
+        user = User(firstname=firstname, lastname=lastname, email=email, password=password)
+        user.save()
         return redirect(url_for("signin"))
     return render_template("signup.html", form=form)
 
@@ -41,9 +41,8 @@ def signin():
     if form.validate_on_submit() and request.method == "POST":
         email = request.form['email']
         password = request.form['password']
-        user = get_user(email)
+        user = User.get_by_email(email)
         if user is not None and user.verify_password(password):
-            print(user.password)
             login_user(user)
             return redirect(url_for('dashboard'))
     return render_template("signin.html", form=form)
@@ -98,8 +97,4 @@ def logout():
 # Cargar usuarios
 @login_manager.user_loader
 def load_user(user_id):
-    for user in db_user:
-        if user.id == int(user_id):
-            return user
-        else:
-            return None
+    return User.get_by_id(int(user_id))
