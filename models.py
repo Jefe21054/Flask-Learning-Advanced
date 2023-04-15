@@ -11,6 +11,7 @@ class User(db.Model, UserMixin):
     lastname = db.Column(db.String(64), nullable=False)
     email = db.Column(db.String(32), nullable=False, unique=True)
     password = db.Column(db.String(128), nullable=False)
+    courses = db.relationship('Courses', backref='user', lazy=True)
     
     def verify_password(self,password):
         ''' Para verificar la contraseña del usuario '''
@@ -30,3 +31,12 @@ class User(db.Model, UserMixin):
     def get_by_id(user_id):
         ''' Consulta usuario por id '''
         return User.query.get(user_id)
+
+class Courses(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    professor = db.Column(db.String(64), nullable=False)
+    title = db.Column(db.String(128), nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    url = db.Column(db.String(256), nullable=False)
+    user_login_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    
