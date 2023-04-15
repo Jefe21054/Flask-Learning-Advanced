@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-from flask_login import LoginManager, login_user
+from flask_login import LoginManager, login_user, login_required
 from models import User, db_user, get_user
 from forms import LoginForm, SignupForm
 
@@ -8,6 +8,7 @@ app.config["SECRET_KEY"] = "so-secret"
 
 login_manager = LoginManager()
 login_manager.init_app(app)
+login_manager.login_view = 'signin'
 
 @app.route("/")
 def index():
@@ -40,8 +41,8 @@ def signin():
             return redirect(url_for('dashboard'))
     return render_template("signin.html", form=form)
 
-
 @app.route("/dashboard")
+@login_required
 def dashboard():
     return render_template("dashboard.html")
 
