@@ -50,7 +50,7 @@ def dashboard():
 @login_manager.user_loader
 def load_user(user_id):
     for user in db_user:
-        if user.id == user_id:
+        if user.id == int(user_id):
             return user
         else:
             return None

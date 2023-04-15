@@ -25,7 +25,7 @@
     </style>
 </head>
 <body>
-    <h1>Welcome "Your Username Goes Here" to your dashboard EDteam!!!</h1>
+    <h1>Welcome {{ current_user.firstname }} {{ current_user.lastname }} to your dashboard EDteam!!!</h1>
     <div class="logout">
         <a href="{{ url_for('signin') }}">Logout</a>
     </div>
