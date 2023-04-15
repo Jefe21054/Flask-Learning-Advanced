@@ -5,7 +5,8 @@ db_user = []
 class User(UserMixin):
     ''' Clase Usuario que hereda de User Mixin para
     tener auth de usuarios de manera fácil'''
-    def __init__(self,firstname,lastname,email,password):
+    def __init__(self,id,firstname,lastname,email,password):
+        self.id = id
         self.firstname = firstname
         self.lastname = lastname
         self.email = email
@@ -21,6 +22,6 @@ class User(UserMixin):
 def get_user(email):
     for user in db_user:
         if user.email == email:
-            return True
+            return user
         else:
-            return False
+            return None
