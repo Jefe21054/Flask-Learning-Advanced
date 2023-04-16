@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_required, current_user
-from forms import AddCourseForm
-from models import Courses
+from .forms import AddCourseForm
+from .models import Courses
 from . import admin_bp
 
 @admin_bp.route("/dashboard")

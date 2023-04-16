@@ -3,18 +3,13 @@ from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-
-# app.config['SECRET_KEY'] = FLASK_SECRET
-# 'postgresql://username:password@localhost:5432/edteamdb'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost:5432/edteamdb'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 db = SQLAlchemy()
 migrate = Migrate()
 login_manager = LoginManager()
 
-def create_app():
+def create_app(settings_module):
     app = Flask(__name__)
+    app.config.from_object(settings_module)
     
     db.init_app(app)
     migrate.init_app(app, db)
