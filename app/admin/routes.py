@@ -2,18 +2,19 @@ from flask import render_template, request, redirect, url_for
 from flask_login import login_required, current_user
 from forms import AddCourseForm
 from models import Courses
+from . import admin_bp
 
-@app.route("/dashboard")
+@admin_bp.route("/dashboard")
 @login_required
 def dashboard():
-    return render_template("dashboard.html")
+    return render_template("admin/dashboard.html")
 
-@app.route("/dashboard/user/account")
+@admin_bp.route("/dashboard/user/account")
 @login_required
 def user_account():
-    return render_template("user_account.html")
+    return render_template("admin/user_account.html")
 
-@app.route("/dashboard/courses/add", methods=["GET", "POST"])
+@admin_bp.route("/dashboard/courses/add", methods=["GET", "POST"])
 @login_required
 def add_courses():
     form = AddCourseForm()
@@ -24,23 +25,23 @@ def add_courses():
         url = request.form['url']
         course = Courses(professor=professor, title=title, description=description, url=url, user_login_id=current_user.id)
         course.save()
-        return redirect(url_for("dashboard"))
-    return render_template("add_course.html", form=form)
+        return redirect(url_for("admin.dashboard"))
+    return render_template("admin/add_course.html", form=form)
 
-@app.route("/dashboard/courses")
+@admin_bp.route("/dashboard/courses")
 @login_required
 def courses():
     courses = Courses.get_all()
-    return render_template("courses.html", courses=courses)
+    return render_template("admin/courses.html", courses=courses)
 
-@app.route("/dashboard/course/delete/<id>")
+@admin_bp.route("/dashboard/course/delete/<id>")
 @login_required
 def delete_course(id=None):
     course = Courses.get_by_id(id)
     course.delete()
-    return redirect(url_for('courses'))
+    return redirect(url_for('admin.courses'))
 
-@app.route("/dashboard/course/update/<id>", methods=["GET", "POST"])
+@admin_bp.route("/dashboard/course/update/<id>", methods=["GET", "POST"])
 @login_required
 def update_course(id=None):
     course = Courses.get_by_id(id)
@@ -51,5 +52,5 @@ def update_course(id=None):
         course.description = request.form['description']
         course.url = request.form['url']
         course.save()
-        return redirect(url_for('courses'))
-    return render_template('add_course.html', form=form)
+        return redirect(url_for('admin.courses'))
+    return render_template('admin/add_course.html', form=form)
