@@ -32,7 +32,7 @@
             </nav>
             <div class="username">
                 <a href="/dashboard/user/account"> <i class="fa-solid fa-user"></i> {{ current_user.firstname }} {{ current_user.lastname }}</a>
-                <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i> salir</a>
+                <a href="{{ url_for('auth.logout') }}"><i class="fa-solid fa-right-from-bracket"></i> salir</a>
             </div>
         </header>
 

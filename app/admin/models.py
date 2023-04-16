@@ -1,4 +1,4 @@
-
+from app import db
 
 class Courses(db.Model):
     id = db.Column(db.Integer, primary_key=True)

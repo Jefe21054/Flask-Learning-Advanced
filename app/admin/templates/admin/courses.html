@@ -26,8 +26,8 @@
                         <a href="{{ course.url }}" target="_blank">Ir al curso</a>
                     </div>
                     <div class="actions">
-                        <a class="delete" href="{{ url_for('delete_course', id=course.id) }}">Borrar</a>
-                        <a class="update" href="{{ url_for('update_course', id=course.id) }}">Actualizar</a>
+                        <a class="delete" href="{{ url_for('admin.delete_course', id=course.id) }}">Borrar</a>
+                        <a class="update" href="{{ url_for('admin.update_course', id=course.id) }}">Actualizar</a>
                     </div>
                 </div>
             {% endfor %}
