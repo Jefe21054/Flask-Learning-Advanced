@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, EmailField, TextAreaField
+from wtforms import StringField, PasswordField, EmailField
 from wtforms.validators import DataRequired, Email
 
 class LoginForm(FlaskForm):
@@ -11,9 +11,3 @@ class SignupForm(FlaskForm):
     lastname = StringField(render_kw={"placeholder": "Apellido" }, validators=[DataRequired(message="Ingresa tu apellido")])
     email = EmailField(render_kw={"placeholder": "Correo Electrónico" }, validators=[DataRequired(message="Ingresa un email"), Email(message="Ingresa un email válido")])
     password = PasswordField(render_kw={"placeholder": "Contraseña" }, validators=[DataRequired(message="Ingresa tu contraseña")])
-
-class AddCourseForm(FlaskForm):
-    professor = StringField("Profesor:", validators=[DataRequired(message="Nombre del profesor")])
-    title = StringField("Titulo:", validators=[DataRequired(message="Ingresa el título del curso")])
-    description = TextAreaField("Descripción:", validators=[DataRequired(message="Ingresa la descripción")])
-    url = StringField("Url del curso:", validators=[DataRequired(message="Ingresa la url del curso")])
