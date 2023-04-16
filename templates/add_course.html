@@ -1,7 +1,7 @@
 {% extends 'dashboard_base.html' %}
 
 {% block body_content %}
-   <div class="add_courses_content">
+    <div class="add_courses_content">
         <figure class="logo">
             <img src="{{ url_for('static', filename='imgs/logo-alt.svg') }}" alt="EDteam">
         </figure>
@@ -30,13 +30,13 @@
                 {% endfor %}
             </div>
             <div class="form-group">
-                {{ form.link.label }} <br>
-                {{ form.link }}
-                {% for error in form.link.errors %}
+                {{ form.url.label }} <br>
+                {{ form.url }}
+                {% for error in form.url.errors %}
                     <span class="error">{{ error }}</span>
                 {% endfor %}
             </div>
             <button class="add-course-btn" type="submit">Crear</button>
         </form>
-   </div> 
+    </div> 
 {% endblock body_content %}

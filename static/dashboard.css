@@ -2,7 +2,7 @@
     --header-color: #212e36;
     --bg-color: #192229;
     --text-color: #ecf0f3;
-    --input-bg-color: #28353e;
+    --input-bg-color: #cacaca;
     --input-placeholder-color: #4a5862;
     --button-bg-color: #0f80d2;
     --header-font: 'Inter', sans-serif;
@@ -104,7 +104,7 @@ body {
 .form-group label {
     display: inline-block;
     width: 100%;
-    color: #a4aeb5;
+    color: #e0e0e0;
     font-size: .9em;
     font-weight: 600;
     text-align: start;

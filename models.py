@@ -45,6 +45,21 @@ class Courses(db.Model):
     user_login_id = db.Column(db.Integer, db.ForeignKey('user_login.id'), nullable=False)
     
     def save(self):
-        ''' Para guardar un nuevo curso '''
-        db.session.add(self)
+        ''' Para guardar o actualizar un curso '''
+        if not self.id:
+            db.session.add(self)
         db.session.commit()
+    
+    def delete(self):
+        ''' Para eliminar un curso '''
+        db.session.delete(self)
+        db.session.commit()
+    
+    @staticmethod
+    def get_all():
+        return Courses.query.all()
+    
+    @staticmethod
+    def get_by_id(id):
+        ''' Consulta curso por id '''
+        return Courses.query.get(id)

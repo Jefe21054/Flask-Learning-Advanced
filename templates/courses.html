@@ -1,12 +1,12 @@
 {% extends 'dashboard_base.html' %}
 
 {% block body_content %}
-   <div class="courses_content">
-       <figure class="logo">
-           <img src="{{ url_for('static', filename='imgs/logo-alt.svg') }}" alt="EDteam">
-       </figure>
-       <h1>Cursos Tomados</h1>
-       <div class="courses-taken">
+    <div class="courses_content">
+        <figure class="logo">
+            <img src="{{ url_for('static', filename='imgs/logo-alt.svg') }}" alt="EDteam">
+        </figure>
+        <h1>Cursos Tomados</h1>
+        <div class="courses-taken">
             {% for course in courses %}
                 <div class="course">
                     <div class="course-property">
@@ -26,11 +26,11 @@
                         <a href="{{ course.url }}" target="_blank">Ir al curso</a>
                     </div>
                     <div class="actions">
-                        <a class="delete" href="{{ url_for('delete_course', id=course.title) }}">Borrar</a>
-                        <a class="update" href="{{ url_for('update_course', id=course.title) }}">Actualizar</a>
+                        <a class="delete" href="{{ url_for('delete_course', id=course.id) }}">Borrar</a>
+                        <a class="update" href="{{ url_for('update_course', id=course.id) }}">Actualizar</a>
                     </div>
                 </div>
             {% endfor %}
-       </div>
-   </div> 
+        </div>
+    </div> 
 {% endblock body_content %}

@@ -75,25 +75,29 @@ def add_courses():
 @app.route("/dashboard/courses")
 @login_required
 def courses():
-    courses = [{"professor": "Kevin Guzmán", 
-                "title": "Fundamentos de Flask",
-                "description": "Es un curso donde aprenderemos conceptos básicos del desarrollo utilizando la excelente herramienta de FLASK",
-                "url": "https://ed.team/cursos/flask"}, 
-                {"professor": "Diego Adrian Barra Paredes", 
-                "title": "Curso: React Hooks con TypeScript",
-                "description": "A menudo cuando escribes componentes dentro de las clases, te encuentras que con el tiempo se vuelven complejos, difíciles de organizar, y la lógica de estado entre los componentes no la puedes reutilizar.",
-                "url": "https://ed.team/cursos/react-hooks"}]
+    courses = Courses.get_all()
     return render_template("courses.html", courses=courses)
 
 @app.route("/dashboard/course/delete/<id>")
 @login_required
 def delete_course(id=None):
-    return f"Deleted Course with id {id}"
+    course = Courses.get_by_id(id)
+    course.delete()
+    return redirect(url_for('courses'))
 
-@app.route("/dashboard/course/update/<id>")
+@app.route("/dashboard/course/update/<id>", methods=["GET", "POST"])
 @login_required
 def update_course(id=None):
-    return f"Updated Course with id {id}"
+    course = Courses.get_by_id(id)
+    form = AddCourseForm(obj=course)
+    if form.validate_on_submit():
+        course.professor = request.form['professor']
+        course.title = request.form['title']
+        course.description = request.form['description']
+        course.url = request.form['url']
+        course.save()
+        return redirect(url_for('courses'))
+    return render_template('add_course.html', form=form)
 
 @app.route("/logout")
 @login_required
